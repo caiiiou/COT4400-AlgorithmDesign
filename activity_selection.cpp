@@ -1,10 +1,17 @@
-#include "activity_selection.h"
+#include <iostream>
+#include <vector>
+#include <utility>
+#include <chrono>
 
 // TODO: Implement activity selection (greedy)
 // - Sort activities by finish time
 // - Greedily pick non-overlapping activities
-std::vector<int> activitySelection(std::vector<std::pair<int,int>>& activities) {
-    std::vector<int> selected;
-    // Your implementation here
-    return selected;
+
+int main() {
+    std::cout << "========================================" << std::endl;
+    std::cout << "  ACTIVITY SELECTION (Greedy)" << std::endl;
+    std::cout << "========================================" << std::endl;
+    std::cout << "  [Not yet implemented]" << std::endl;
+
+    return 0;
 }

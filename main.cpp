@@ -4,7 +4,6 @@
 #include <utility>
 using namespace std;
 
-// Forward declarations
 void mergeSort(vector<int>& arr, int left, int right);
 vector<int> activitySelection(vector<pair<int,int>>& activities);
 int knapsack(vector<int>& weights, vector<int>& values, int capacity);
@@ -31,10 +30,7 @@ void testMergeSort(string label, vector<int> arr) {
 }
 
 int main() {
-    // ========== MERGE SORT ==========
-    cout << "========================================\n";
-    cout << "  MERGE SORT (Divide & Conquer)\n";
-    cout << "========================================\n\n";
+    cout << "MERGE SORT (Divide & Conquer)\n\n";
 
     testMergeSort("Test 1 - Random array:", {38, 27, 43, 3, 9, 82, 10});
     testMergeSort("Test 2 - Already sorted:", {1, 2, 3, 4, 5, 6, 7});
@@ -42,8 +38,7 @@ int main() {
     testMergeSort("Test 4 - Empty array:", {});
     testMergeSort("Test 5 - Single element:", {42});
 
-    // Experimental evaluation
-    cout << "--- Experimental Evaluation ---\n";
+    cout << "Experimental Evaluation\n";
     cout << "Input Size\tTime (ms)\n";
     for (int n : {10, 100, 1000, 10000}) {
         vector<int> arr(n);
@@ -57,17 +52,8 @@ int main() {
     }
     cout << endl;
 
-    // ========== ACTIVITY SELECTION ==========
-    cout << "========================================\n";
-    cout << "  ACTIVITY SELECTION (Greedy)\n";
-    cout << "========================================\n";
-    cout << "  [Not yet implemented]\n\n";
-
-    // ========== 0/1 KNAPSACK ==========
-    cout << "========================================\n";
-    cout << "  0/1 KNAPSACK (Dynamic Programming)\n";
-    cout << "========================================\n";
-    cout << "  [Not yet implemented]\n\n";
+    // TODO: Activity Selection tests
+    // TODO: Knapsack tests
 
     return 0;
 }

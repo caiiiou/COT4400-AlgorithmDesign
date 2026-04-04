@@ -1,7 +1,7 @@
 #include <vector>
 using namespace std;
 
-// Merge two sorted halves into one sorted array
+// Merge two sorted halves
 void merge(vector<int>& arr, int left, int mid, int right) {
     vector<int> temp;
     int i = left, j = mid + 1;
@@ -17,7 +17,7 @@ void merge(vector<int>& arr, int left, int mid, int right) {
         arr[left + k] = temp[k];
 }
 
-// Recursively split and sort the array
+// Recursive merge sort
 void mergeSort(vector<int>& arr, int left, int right) {
     if (left >= right) return;
     int mid = left + (right - left) / 2;

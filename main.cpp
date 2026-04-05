@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <chrono>
+#include <functional>
 #include <utility>
 using namespace std;
 
@@ -17,16 +18,24 @@ void printArray(const vector<int>& arr) {
     cout << "]" << endl;
 }
 
+// Times any function and returns elapsed ms
+double timeIt(function<void()> fn) {
+    auto start = chrono::high_resolution_clock::now();
+    fn();
+    auto end = chrono::high_resolution_clock::now();
+    return chrono::duration<double, milli>(end - start).count();
+}
+
 void testMergeSort(string label, vector<int> arr) {
     cout << label << endl;
     cout << "  Input:  "; printArray(arr);
 
-    auto start = chrono::high_resolution_clock::now();
-    if (!arr.empty()) mergeSort(arr, 0, arr.size() - 1);
-    auto end = chrono::high_resolution_clock::now();
+    double ms = timeIt([&]() {
+        if (!arr.empty()) mergeSort(arr, 0, arr.size() - 1);
+    });
 
     cout << "  Output: "; printArray(arr);
-    cout << "  Time:   " << chrono::duration<double, milli>(end - start).count() << " ms\n\n";
+    cout << "  Time:   " << ms << " ms\n\n";
 }
 
 int main() {
@@ -44,11 +53,8 @@ int main() {
         vector<int> arr(n);
         for (int i = 0; i < n; i++) arr[i] = rand() % 10000;
 
-        auto start = chrono::high_resolution_clock::now();
-        mergeSort(arr, 0, arr.size() - 1);
-        auto end = chrono::high_resolution_clock::now();
-
-        cout << n << "\t\t" << chrono::duration<double, milli>(end - start).count() << " ms\n";
+        double ms = timeIt([&]() { mergeSort(arr, 0, arr.size() - 1); });
+        cout << n << "\t\t" << ms << " ms\n";
     }
     cout << endl;
 

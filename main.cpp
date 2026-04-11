@@ -122,7 +122,7 @@ int main() {
 
     cout << "0/1 KNAPSACK (Dynamic Programming)\n\n";
 
-    testKnapsack("Test 1 - Basic case:", {1, 2, 3, 4}, {3, 4, 5, 6}, 5);
+    testKnapsack("Test 1 - Basic case:", {1, 2, 3, 4, 5, 6, 7}, {3, 4, 5, 6, 7, 8, 9}, 12);
     testKnapsack("Test 2 - Standard case:", {1, 3, 4, 5}, {1, 4, 5, 7}, 7);
     testKnapsack("Test 3 - All items fit:", {1, 2, 3}, {10, 15, 40}, 6);
     testKnapsack("Test 4 - None fit:", {5, 6, 7}, {10, 20, 30}, 3);

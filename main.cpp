@@ -38,6 +38,22 @@ void testMergeSort(string label, vector<int> arr) {
     cout << "  Time:   " << ms << " ms\n\n";
 }
 
+void testKnapsack(string label, vector<int> weights, vector<int>values, int capacity){
+    cout << label << endl;
+
+    cout << " Weights:  "; printArray(weights);
+    cout << " Values:  "; printArray(values);
+    cout << " Capacity:   " << capacity << endl;
+
+    int result = 0;
+    double ms = timeIt([&]() {
+        result = knapsack(weights, values, capacity);
+    });
+
+    cout << "  Max Value: " << result << endl;
+    cout << "  Time:      " << ms << " ms\n\n";
+}
+
 int main() {
     cout << "MERGE SORT (Divide & Conquer)\n\n";
 
@@ -59,7 +75,32 @@ int main() {
     cout << endl;
 
     // TODO: Activity Selection tests
-    // TODO: Knapsack tests
+
+    cout << "0/1 KNAPSACK (Dynamic Programming)\n\n";
+
+    testKnapsack("Test 1 - Basic case:", {1, 2, 3, 4}, {3, 4, 5, 6}, 5);
+    testKnapsack("Test 2 - Standard case:", {1, 3, 4, 5}, {1, 4, 5, 7}, 7);
+    testKnapsack("Test 3 - All items fit:", {1, 2, 3}, {10, 15, 40}, 6);
+    testKnapsack("Test 4 - None fit:", {5, 6, 7}, {10, 20, 30}, 3);
+    testKnapsack("Test 5 - Single item:", {4},{10}, 5);
+    testKnapsack("Test 6 - Empty weights and values:", {}, {}, 10);
+
+    cout << "Experimental Evaluation\n";
+    cout << "Input Size\tTime (ms)\n";
+    for (int n : {10, 50, 100, 200}) {
+        vector<int> weights(n), values(n);
+
+        for (int i = 0; i < n; i++) {
+            weights[i] = rand() % 20 + 1;
+            values[i] = rand() % 100 + 1;
+        }
+
+        int capacity = n * 5;
+
+        double ms = timeIt([&]() {knapsack(weights, values, capacity); });
+        cout << n << "\t\t" << ms << " ms\n";
+    }
+    cout << endl;
 
     return 0;
 }

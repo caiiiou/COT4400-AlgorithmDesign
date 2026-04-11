@@ -1,3 +1,13 @@
+/*
+* 0/1 KNAPSACK PROBLEM
+* SOLVED USING DYNAMIC PROGRAMMING
+* TIME: O(n * w)
+* SPACE: O(n * w) 
+* Where n is the amount of objects and w is the capacity of the knapsack.
+* The idea of the memoization approach is to search check if we have checked the object previously. If it has not
+* been accessed previously, then we store it in a 2D array which is later accessed to avoid repeated recursion.
+*/
+
 #include <vector>
 #include <algorithm>
 using namespace std;

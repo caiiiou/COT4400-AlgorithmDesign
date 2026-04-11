@@ -3,6 +3,7 @@
 #include <chrono>
 #include <functional>
 #include <utility>
+#include <cstdlib>
 using namespace std;
 
 void mergeSort(vector<int>& arr, int left, int right);

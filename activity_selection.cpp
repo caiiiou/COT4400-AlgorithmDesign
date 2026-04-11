@@ -18,7 +18,7 @@ bool compare(pair<int, int> taskSt, pair<int, int> taskFin)
     return taskSt.second < taskFin.second;
 }
 
-void activitySelection(vector<int>& start, vector<int>& finish)
+void activitySelection(vector<int>& start, vector<int>& finish, bool print)
 {
     vector<pair<int, int>> taskArr;
 
@@ -33,7 +33,8 @@ void activitySelection(vector<int>& start, vector<int>& finish)
     // If taskArr is empty
     if(taskArr.size() == 0)
     {
-        cout << "No activities are available.\n";
+        if(print)
+            cout << "No activities are available.\n";
         return;
     }
 
@@ -51,17 +52,21 @@ void activitySelection(vector<int>& start, vector<int>& finish)
         }
     }
 
-    // OUTPUT FOR SELECTED ACTIVITIES
-    cout << "Your selected activities:\n";
-    int count = 1;
-    for(auto activity : selectedAct)
+    if(print)
     {
-        cout << "Activity: " << count << " Start = " << activity.first << ", Finish = " << activity.second << endl;
-        count++;
+        // OUTPUT FOR SELECTED ACTIVITIES
+        cout << "Your selected activities:\n";
+        int count = 1;
+        for(auto activity : selectedAct)
+        {
+            cout << "Activity: " << count << " Start = " << activity.first << ", Finish = " << activity.second << endl;
+            count++;
+        }
+        
+        // OUTPUT THE TOTAL COUNT
+        cout << "Total Count of Activities Selected: " << selectedAct.size() << endl;
     }
-    
-    // OUTPUT THE TOTAL COUNT
-    cout << "Total Count of Activities Selected: " << selectedAct.size() << endl;
+
     
 }
     

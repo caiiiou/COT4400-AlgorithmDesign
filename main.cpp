@@ -6,7 +6,7 @@
 using namespace std;
 
 void mergeSort(vector<int>& arr, int left, int right);
-vector<int> activitySelection(vector<pair<int,int>>& activities);
+void activitySelection(vector<int>& start, vector<int>& finish, bool print = true);
 int knapsack(vector<int>& weights, vector<int>& values, int capacity);
 
 void printArray(const vector<int>& arr) {
@@ -36,6 +36,20 @@ void testMergeSort(string label, vector<int> arr) {
 
     cout << "  Output: "; printArray(arr);
     cout << "  Time:   " << ms << " ms\n\n";
+}
+
+
+void testActivitySelection(string label, vector<int> start, vector<int> finish) {
+    cout << label << endl;
+
+    cout << "  Start Times:  "; printArray(start);
+    cout << "  Finish Times: "; printArray(finish);
+
+    double ms = timeIt([&]() {
+        activitySelection(start, finish, true);
+    });
+
+    cout << "  Time:         " << ms << " ms\n\n";
 }
 
 void testKnapsack(string label, vector<int> weights, vector<int>values, int capacity){
@@ -74,7 +88,36 @@ int main() {
     }
     cout << endl;
 
-    // TODO: Activity Selection tests
+    
+    // Activity Selection Tests
+    cout << "ACTIVITY SELECTION (Greedy Algorithm)\n\n";
+
+    testActivitySelection("Test 1 - Basic case:", {1, 3, 0, 5, 8, 5}, {2, 4, 6, 7, 9, 9});
+    testActivitySelection("Test 2 - Single activity:", {2}, {3});
+    testActivitySelection("Test 3 - Empty input:", {}, {});
+    testActivitySelection("Test 4 - Non-overlapping:", {1, 3, 5, 7}, {2, 4, 6, 8});
+    testActivitySelection("Test 5 - Overlapping case:", {1, 2, 3, 4}, {5, 6, 7, 8});
+    
+    cout << "Experimental Evaluation\n";
+    cout << "Input Size\tTime (ms)\n";
+    for (int n : {10, 100, 1000, 5000}) 
+    {
+        vector<int> start(n), finish(n);
+    
+        for (int i = 0; i < n; i++) 
+        {
+            start[i] = rand() % 10000;
+            finish[i] = start[i] + (rand() % 50 + 1);
+        }
+    
+        double ms = timeIt([&]() {
+            activitySelection(start, finish, false);
+        });
+    
+        cout << n << "\t\t" << ms << " ms\n";
+    }
+    cout << endl;
+    
 
     cout << "0/1 KNAPSACK (Dynamic Programming)\n\n";
 

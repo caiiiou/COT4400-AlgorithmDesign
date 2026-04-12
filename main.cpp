@@ -6,10 +6,12 @@
 #include <cstdlib>
 using namespace std;
 
+// Forward declarations for sorting, greedy, and DP functions defined in other files
 void mergeSort(vector<int>& arr, int left, int right);
 void activitySelection(vector<int>& start, vector<int>& finish, bool print = true);
 int knapsack(vector<int>& weights, vector<int>& values, int capacity);
 
+// Helper to display a vector
 void printArray(const vector<int>& arr) {
     cout << "[";
     for (int i = 0; i < (int)arr.size(); i++) {
@@ -27,6 +29,7 @@ double timeIt(function<void()> fn) {
     return chrono::duration<double, milli>(end - start).count();
 }
 
+// Runs merge sort on an array, prints before/after and timing, and skips empty input
 void testMergeSort(string label, vector<int> arr) {
     cout << label << endl;
     cout << "  Input:  "; printArray(arr);
@@ -40,6 +43,7 @@ void testMergeSort(string label, vector<int> arr) {
 }
 
 
+// Runs activity selection and prints the start/finish times with timing
 void testActivitySelection(string label, vector<int> start, vector<int> finish) {
     cout << label << endl;
 
@@ -53,6 +57,7 @@ void testActivitySelection(string label, vector<int> start, vector<int> finish) 
     cout << "  Time:         " << ms << " ms\n\n";
 }
 
+// Runs 0/1 knapsack and prints weights, values, capacity, result, and timing
 void testKnapsack(string label, vector<int> weights, vector<int>values, int capacity){
     cout << label << endl;
 
@@ -72,6 +77,7 @@ void testKnapsack(string label, vector<int> weights, vector<int>values, int capa
 int main() {
     cout << "MERGE SORT (Divide & Conquer)\n\n";
 
+    // Runs correctness tests on edge cases, then benchmarks increasing random input sizes
     testMergeSort("Test 1 - Random array:", {38, 27, 43, 3, 9, 82, 10});
     testMergeSort("Test 2 - Already sorted:", {1, 2, 3, 4, 5, 6, 7});
     testMergeSort("Test 3 - Reverse sorted:", {7, 6, 5, 4, 3, 2, 1});
@@ -90,7 +96,7 @@ int main() {
     cout << endl;
 
     
-    // Activity Selection Tests
+    // Runs correctness tests, then benchmarks random activities with random starts and durations
     cout << "ACTIVITY SELECTION (Greedy Algorithm)\n\n";
 
     testActivitySelection("Test 1 - Basic case:", {1, 3, 0, 5, 8, 5}, {2, 4, 6, 7, 9, 9});
@@ -122,6 +128,7 @@ int main() {
 
     cout << "0/1 KNAPSACK (Dynamic Programming)\n\n";
 
+    // Runs correctness tests, then benchmarks random weights and values with capacity scaled to input size
     testKnapsack("Test 1 - Basic case:", {1, 2, 3, 4, 5, 6, 7}, {3, 4, 5, 6, 7, 8, 9}, 12);
     testKnapsack("Test 2 - Standard case:", {1, 3, 4, 5}, {1, 4, 5, 7}, 7);
     testKnapsack("Test 3 - All items fit:", {1, 2, 3}, {10, 15, 40}, 6);
